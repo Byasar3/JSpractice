@@ -1,13 +1,8 @@
 // convert an integer to roman number
 
 const intToRomanNumerals = (num) => {
-    if (num <= 0 || num >= 4000) {
-        return "Invalid input. Please enter a number between 0 and 4000"
-    }
-
-
-    // mapping
-    const romanNumerals = {
+    // mapping the roman numerals to their corresponding numbers
+    const romanNumeralMap = {
         M: 1000,
         CM: 900,
         D: 500,
@@ -23,15 +18,22 @@ const intToRomanNumerals = (num) => {
         I: 1
     };
 
+    // initialise an empty string (where the roman numerals will be entered)
     let romanNumeralResult = "";
 
-    for (const symbol in romanNumerals) {
-        while (num >= romanNumerals[symbol]) {
+    for (const symbol in romanNumeralMap) {
+        // check if current number is greate than or equal to the value associated with the current 'symbol' 
+        while (num >= romanNumeralMap[symbol]) {
+            // 'symbol' is added to the empty string already made
             romanNumeralResult += symbol;
-            num -= romanNumerals[symbol];
+            // the value corresponding to 'symbol' is subtracted from number
+            num -= romanNumeralMap[symbol];
         }
     }
-
     return romanNumeralResult;
-
 };
+
+const randomNum = Math.floor(Math.random() * 3999) + 1;
+console.log('Random Number:', randomNum);
+const romanNumeral = intToRomanNumerals(randomNum);
+console.log('Roman Numeral:', romanNumeral);
